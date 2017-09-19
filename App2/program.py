@@ -7,15 +7,15 @@ print(dash)
 print()
 
 the_number = random.randint(0, 100)
-
-guess_text = int(input('Guess a number between 0 and 100:  '))
-guess = guess_text
+guess = -1
 
 while guess != the_number:
+    guess_text = int(input('Guess a number between 0 and 100:  '))
+    guess = guess_text
+
     if the_number < guess:
-        print('Lower... Sorry try again:  ')
+        print('Sorry {} was too high...  try again'.format(guess))
     elif the_number > guess:
-        print('Higher... Sorry try again:  ')
+        print('Sorry {} was too low... try again'.format(guess))
     else:
         print("You got it!")
-        break
