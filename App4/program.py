@@ -1,0 +1,55 @@
+import journal
+
+
+def main():
+    print_header()
+    run_event_loop()
+
+
+def print_header():
+    pass
+    dash = 30 * "-"
+    print(dash)
+    print('         Journal App')
+    print(dash)
+
+
+def run_event_loop():
+    print('What do you want to do with your Journal? ')
+    cmd = 'Empty'
+    journal_name = 'default'
+    journal_data = journal.load(journal_name)  # list()
+
+    while cmd != 'X' and cmd:
+        cmd = input('[L]ist entries, [A]dd an entry, E[x]it:  ').strip().upper()
+
+        if cmd == 'L':
+            list_entries(journal_data)
+        elif cmd == 'A':
+            add_entry(journal_data)
+        elif cmd != 'X' and cmd:
+            print("Sorry, we don't understand '{}'".format(cmd))
+
+    print('Done, goodbye.')
+    journal.save(journal_name, journal_data)
+
+
+def list_entries(data):
+    print('Your journal entries: ')
+    entries = reversed(data)
+    for idx, entry in enumerate(entries):
+        print('* [{}] {}'.format(idx + 1, entry))
+
+
+def add_entry(data):
+    text = input('Type your entry, <enter> to exit: ')
+    journal.add_entry(text, data)
+    # data.append(text)
+
+
+print(__file__)
+print(__name__)
+
+
+if __name__ == '__main__':
+    main()
