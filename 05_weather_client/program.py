@@ -1,4 +1,6 @@
-import requests, bs4, collections
+import bs4
+import collections
+import requests
 
 WeatherReport = collections.namedtuple('WeatherReport',
                                        'cond, temp, scale, loc')
